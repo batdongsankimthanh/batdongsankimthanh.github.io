@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mua Bán Nhà Nghỉ & Đất - Kim Thành, Phúc Thành</title>
+    <meta name="description" content="Mua bán nhà nghỉ, đất nền Kim Thành, Phúc Thành - Hải Dương. Cơ hội đầu tư bất động sản sinh lời cao, vị trí mặt tiền đẹp, gần khu công nghiệp, pháp lý rõ ràng, sổ đỏ chính chủ.">
+    <meta name="keywords" content="mua đất Kim Thành, mua đất Phúc Thành, bán đất Hải Dương, nhà nghỉ kinh doanh, bán nhà mặt tiền, đầu tư bất động sản, đất kinh doanh, nhà nghỉ sổ đỏ, mua bán bất động sản, đất nền giá rẻ, đầu tư sinh lời, nhà nghỉ mặt tiền, đất gần khu công nghiệp, đất nền Hải Dương, bán nhà nghỉ Kim Thành, bán đất Phúc Thành, mua bán nhà đất Kim Thành, mua bán nhà đất Phúc Thành">
+    <meta name="author" content="Bất Động Sản Hải Dương">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #d9534f;
+        }
+        .highlight {
+            color: #0275d8;
+            font-weight: bold;
+        }
+        .cta {
+            margin-top: 20px;
+            padding: 15px;
+            background: #28a745;
+            color: white;
+            font-size: 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .cta:hover {
+            background: #218838;
+        }
+        .contact {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .map-container {
+            margin-top: 20px;
+        }
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: 0;
+            border-radius: 10px;
+        }
+        .carousel {
+            position: relative;
+            max-width: 100%;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+        .carousel img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            margin: 0 auto;
+            display: none;
+            margin-bottom: 20px; /* Thêm khoảng cách 20px giữa các ảnh */
+        }
+        .carousel img.active {
+            display: block;
+        }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border: none;
+        }
+        .prev { left: 10px; }
+        .next { right: 10px; }
+        .zoom {
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+        }
+        .zoom:hover {
+            transform: scale(1.5);
+            cursor: zoom-out;
+        }
+        .zoom-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .zoom-button {
+            display: block;
+            margin: 10px auto;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .zoomed {
+            transform: scale(1.5);
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup img {
+            max-width: 90%;
+            max-height: 90%;
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+            margin-bottom: 20px; /* Thêm khoảng cách 20px giữa ảnh và các nút */
+        }
+        .popup img.zoom-level-1 {
+            transform: scale(1.5);
+            cursor: zoom-in;
+        }
+        .popup img.zoom-level-2 {
+            transform: scale(2);
+            cursor: zoom-in;
+        }
+        .popup img.zoom-level-3 {
+            transform: scale(2.5);
+            cursor: zoom-out;
+        }
+        .popup .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            color: white;
+            border: none;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .popup .close-btn:hover {
+            color: red;
+        }
+        .popup .popup-prev, .popup .popup-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            color: black;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            z-index: 2;
+        }
+        .popup .popup-prev {
+            left: calc(5% + 20px); /* Cách ảnh 20px */
+        }
+        .popup .popup-next {
+            right: calc(5% + 20px); /* Cách ảnh 20px */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MUA BÁN NHÀ NGHỈ & ĐẤT MẶT TIỀN KIM THÀNH, PHÚC THÀNH</h1>
+        <p><strong>Địa chỉ:</strong> Mặt đường Quốc lộ 5 (hướng Hải Phòng → Hà Nội), Thôn Dưỡng Thái A, Phúc Thành, Kim Thành, Hải Dương</p>
+        <p><strong>Tổng mặt tiền:</strong> <span class="highlight">13.5m</span></p>
+        <p><strong>Giá bán:</strong> <span class="highlight">Thương lượng</span></p>
+
+        <h2>🔥 CƠ HỘI ĐẦU TƯ SINH LỜI 🔥</h2>
+        <ul style="text-align: left;">
+            <li>Bán <span class="highlight">nhà nghỉ + đất liền kề</span>, phù hợp kinh doanh</li>
+            <li>Mặt tiền rộng, ngay Quốc lộ 5, giao thông sầm uất</li>
+            <li>Khu vực đông dân cư, gần khu công nghiệp, tiềm năng phát triển cao</li>
+            <li>Pháp lý rõ ràng, sổ đỏ chính chủ</li>
+        </ul>
+
+        <button class="cta" onclick="window.location.href='tel:0968139925'">Gọi ngay: 0968 139 925</button>
+        <button class="cta" onclick="window.location.href='tel:0329183525'">Gọi ngay: 0329 183 525</button>
+        <br>
+        <button class="cta" style="background: #0078FF; margin-top: 10px;" onclick="window.location.href='https://zalo.me/0968139925'">Nhắn Zalo: 0968 139 925</button>
+        <button class="cta" style="background: #0078FF; margin-top: 10px;" onclick="window.location.href='https://zalo.me/0329183525'">Nhắn Zalo: 0329 183 525</button>
+
+        <div class="carousel">
+            <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+            <div class="zoom-container">
+                <img class="active" src="image/image_1.jpg" alt="Ảnh 1">
+            </div>
+            <div class="zoom-container">
+                <img src="image/image_2.jpg" alt="Ảnh 2">
+            </div>
+            <div class="zoom-container">
+                <img src="image/image_3.jpg" alt="Ảnh 3">
+            </div>
+            <div class="zoom-container">
+                <img src="image/image_4.jpg" alt="Ảnh 4">
+            </div>
+            <div class="zoom-container">
+                <img src="image/image_5.jpg" alt="Ảnh 5">
+            </div>
+            <div class="zoom-container">
+                <img src="image/image_6.jpg" alt="Ảnh 6">
+            </div>
+            <div class="zoom-container">
+                <img src="image/image_7.jpg" alt="Ảnh 7">
+            </div>
+            <div class="zoom-container">
+                <img src="image/image_8.jpg" alt="Ảnh 8">
+            </div>
+            <div class="zoom-container">
+                <img src="image/image_9.jpg" alt="Ảnh 9">
+            </div>
+            <div class="zoom-container">
+                <img src="image/image_10.jpg" alt="Ảnh 10">
+            </div>
+            <div class="zoom-container">
+                <img src="image/image_11.jpg" alt="Ảnh 11">
+            </div>
+            <div class="zoom-container">
+                <img src="image/image_12.jpg" alt="Ảnh 12">
+            </div>
+            <button class="next" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+        <button class="zoom-button" onclick="toggleZoom()">Zoom</button>
+
+        <div class="map-container">
+            <h2>📍 Vị trí trên Google Maps</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d601.4597531149138!2d106.49949281311595!3d20.969594448866445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1svi!2s!4v1742635199870!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+    <div class="popup" id="imagePopup">
+        <button class="close-btn" onclick="closePopup()">×</button>
+        <button class="popup-prev" onclick="popupChangeSlide(-1)">&#10094;</button>
+        <img id="popupImage" src="" alt="Popup Image">
+        <button class="popup-next" onclick="popupChangeSlide(1)">&#10095;</button>
+    </div>
+    <script>
+        let currentSlide = 0;
+        let currentPopupIndex = 0;
+        let zoomLevel = 0;
+
+        function changeSlide(direction) {
+            let slides = document.querySelectorAll(".carousel img");
+            slides[currentSlide].classList.remove("active");
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            slides[currentSlide].classList.add("active");
+        }
+
+        function openPopup(imageSrc, index) {
+            const popup = document.getElementById("imagePopup");
+            const popupImage = document.getElementById("popupImage");
+            popupImage.src = imageSrc;
+            popup.style.display = "flex";
+            currentPopupIndex = index;
+            zoomLevel = 0;
+            popupImage.className = ""; // Reset zoom level
+        }
+
+        function closePopup() {
+            const popup = document.getElementById("imagePopup");
+            const popupImage = document.getElementById("popupImage");
+            popup.style.display = "none";
+            popupImage.className = ""; // Reset zoom level
+        }
+
+        function popupChangeSlide(direction) {
+            const images = document.querySelectorAll(".carousel img");
+            currentPopupIndex = (currentPopupIndex + direction + images.length) % images.length;
+            const popupImage = document.getElementById("popupImage");
+            popupImage.src = images[currentPopupIndex].src;
+            zoomLevel = 0;
+            popupImage.className = ""; // Reset zoom level
+        }
+
+        function toggleZoomLevel() {
+            const popupImage = document.getElementById("popupImage");
+            zoomLevel = (zoomLevel + 1) % 4; // Cycle through 0, 1, 2, 3
+            popupImage.className = zoomLevel === 1
+                ? "zoom-level-1"
+                : zoomLevel === 2
+                ? "zoom-level-2"
+                : zoomLevel === 3
+                ? "zoom-level-3"
+                : ""; // Reset if zoomLevel is 0
+        }
+
+        document.querySelectorAll(".carousel img").forEach((img, index) => {
+            img.addEventListener("click", () => openPopup(img.src, index));
+        });
+
+        document.getElementById("popupImage").addEventListener("click", toggleZoomLevel);
+    </script>
+</body>
+</html>
